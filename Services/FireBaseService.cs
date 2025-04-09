@@ -40,7 +40,6 @@ namespace BeFitAdmin
             var posts = await client
                 .Child(POSTS_DB_NAME)
                 .OnceAsync<PostItem>();
-
             return posts.Select(post => post.Object).ToList();
         }
 
