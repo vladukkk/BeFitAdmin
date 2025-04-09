@@ -1,4 +1,5 @@
-﻿using Firebase.Database;
+﻿using DotNetEnv;
+using Firebase.Database;
 using Firebase.Database.Query;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BeFitAdmin
     public class FireBaseService
     {
         private FirebaseClient client;
-        private string firebaseUrl = "https://trainingapp-7f481-default-rtdb.europe-west1.firebasedatabase.app/";
+        private string firebaseUrl;
 
         private static readonly object _lock = new object();
         private static FireBaseService _instance;
@@ -19,6 +20,8 @@ namespace BeFitAdmin
 
         private FireBaseService()
         {
+            Env.Load();
+            firebaseUrl = Env.GetString("FIREBASE_URL");
             client = new FirebaseClient(firebaseUrl);
         }
 
